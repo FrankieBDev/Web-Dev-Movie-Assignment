@@ -1,9 +1,11 @@
 "use client";
 import { useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './TrendingNowCarousel.module.css';
 
 const TrendingNowCarousel = ({ movies }) => {
     const carouselRef = useRef(null);
+    const router = useRouter();  // Correct useRouter hook
 
     const scrollLeft = () => {
         if (carouselRef.current) {
@@ -17,9 +19,19 @@ const TrendingNowCarousel = ({ movies }) => {
         }
     };
 
+    const handleSeeMoreClick = (id) => {
+        router.push(`/movies/${id}`);
+    };
+
+    if (!movies || movies.length === 0) {
+        return <div>No movies available</div>; // Handle empty state
+    }
+
     return (
         <div className={styles.carouselContainer}>
-            <button className={styles.scrollButton} onClick={scrollLeft}>{"<"}</button>
+            <button className={styles.scrollButton} onClick={scrollLeft}>
+                <img src="/leftArrow.png" alt="Scroll Left"/>
+            </button>
             <div className={styles.carousel} ref={carouselRef}>
                 {movies.map((movie) => (
                     <div key={movie.id} className={styles.movieItem}>
@@ -33,17 +45,23 @@ const TrendingNowCarousel = ({ movies }) => {
                                 <h2 className={styles.movieTitle}>{movie.title}</h2>
                                 <p className={styles.movieDescription}>
                                     {movie.overview.length > 100 ? `${movie.overview.substring(0, 100)}...` : movie.overview}
-                                    <a href="#" className={styles.seeMoreLink}> See More</a>
+                                    <button
+                                        onClick={() => handleSeeMoreClick(movie.id)}
+                                        className={styles.seeMoreLink}
+                                    >
+                                        See More
+                                    </button>
                                 </p>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
-            <button className={styles.scrollButton} onClick={scrollRight}>{">"}</button>
+            <button className={styles.scrollButton} onClick={scrollRight}>
+                <img src="/rightArrow.png" alt="Scroll Right"/>
+            </button>
         </div>
     );
 };
 
 export default TrendingNowCarousel;
-

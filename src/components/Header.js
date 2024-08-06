@@ -1,5 +1,6 @@
 "use client";
 import styles from "./Header.module.css";
+import Link from "next/link";
 
 export default function Header() {
 
@@ -17,10 +18,10 @@ export default function Header() {
                 <img src="/FrankiesMoviesLogo.png" alt="Logo" className={styles.logo}/>
             </div>
             <div className={styles.navItem}>
-                <a href="/about">Search</a>
+                <a href="/SearchLink">Search</a>
             </div>
             <div className={styles.navItem}>
-                <a href="/about">Watchlist</a>
+                <a href="/watchlist">Watchlist</a>
             </div>
 
         </header>
