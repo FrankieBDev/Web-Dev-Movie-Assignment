@@ -19,29 +19,36 @@
 
 .movieItem {
     position: relative;
-    /*margin-right: 5px;*/
 }
 
 .moviePosterContainer {
     position: relative;
+    width: 200px;
+    height: 300px;
 }
 
 .moviePoster {
-    width: 200px;
+    height: 100%;
+    width: 100%;
     border-radius: 100px;
 }
 
 .movieOverlay {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     right: 0;
+    bottom: 0;
     background: rgba(0, 0, 0, 0.7);
     color: white;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 100px;
     opacity: 0;
     transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 .moviePosterContainer:hover .movieOverlay {
@@ -50,13 +57,14 @@
 
 .movieTitle {
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin: 0;
 }
 
 .movieDescription {
     font-size: 1rem;
     margin-top: 5px;
+    text-align: center;
 }
 
 .seeMoreLink {

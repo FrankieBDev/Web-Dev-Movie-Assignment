@@ -14,6 +14,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     flex: 1;
+    transition: color 0.3s, text-shadow 0.3s;
 }
 
 .navItem a {
@@ -21,6 +22,11 @@
     text-decoration: none;
     font-size: 2.5rem;
     padding: 1.5rem;
+    transition: color 0.3s;
+}
+.navItem a:hover {
+    color: black;
+    text-shadow: 0 0 10px white;
 }
 
 .logoContainer {

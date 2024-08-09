@@ -1,0 +1,40 @@
+.footer {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    left: 0;
+}
+
+.footerContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 1rem;
+    color: #aaa;
+}
+
+.footerContent p {
+    margin: 10px 0;
+}
+
+.easterEgg {
+    color: #000; /* Dark color, almost invisible against black background */
+    transition: color 0.3s ease;
+}
+
+.easterEgg a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.easterEgg:hover {
+    color: #fff; /* Changes to white when hovered */
+}
+
+.easterEgg a:hover {
+    text-decoration: underline;
+}

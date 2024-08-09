@@ -45,6 +45,7 @@ const TrendingNowCarousel = ({ movies }) => {
                                 <h2 className={styles.movieTitle}>{movie.title}</h2>
                                 <p className={styles.movieDescription}>
                                     {movie.overview.length > 100 ? `${movie.overview.substring(0, 100)}...` : movie.overview}
+                                    <br/>
                                     <button
                                         onClick={() => handleSeeMoreClick(movie.id)}
                                         className={styles.seeMoreLink}

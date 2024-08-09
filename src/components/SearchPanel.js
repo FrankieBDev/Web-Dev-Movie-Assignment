@@ -14,6 +14,7 @@ const SearchPanel = ({ onSearch }) => {
         if (!searchQuery.trim()) return;
         try {
             await onSearch(searchQuery, selectedFilter);
+            setSearchQuery('');
         } catch (error) {
             console.error('Error performing search:', error);
         }

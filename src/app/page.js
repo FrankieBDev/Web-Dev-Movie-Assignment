@@ -5,6 +5,7 @@ import TrendingNowCarousel from '../components/TrendingNowCarousel';
 import SearchResultsCarousel from '../components/SearchResultsCarousel';
 import { fetchPopularMovies, fetchSearchResults } from '@/app/services/moviesApi';
 import styles from "./page.module.css";
+import Footer from '/src/components/Footer';
 
 const Page = () => {
     const [movies, setMovies] = useState([]);
