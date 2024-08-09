@@ -1,41 +1,51 @@
 "use client";
-import { useEffect, useState } from 'react';
-import { fetchPopularMovies } from '/src/app/services/moviesApi.js';
+import { useState, useEffect } from 'react';
+import SearchPanel from '../components/SearchPanel';
 import TrendingNowCarousel from '../components/TrendingNowCarousel';
+import SearchResultsCarousel from '../components/SearchResultsCarousel';
+import { fetchPopularMovies, fetchSearchResults } from '@/app/services/moviesApi';
 import styles from "./page.module.css";
 
-export default function Home() {
+const Page = () => {
     const [movies, setMovies] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [searchResults, setSearchResults] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        const getMovies = async () => {
-            try {
-                const movies = await fetchPopularMovies();
-                setMovies(movies);
-            } catch (error) {
-                setError('Failed to fetch movies.');
-            } finally {
-                setLoading(false);
-            }
+        const fetchMovies = async () => {
+            setIsLoading(true);
+            const popularMovies = await fetchPopularMovies();
+            setMovies(popularMovies);
+            setIsLoading(false);
         };
 
-        getMovies();
+        fetchMovies();
     }, []);
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>{error}</div>;
-    }
+    const handleSearch = async (searchQuery, selectedFilter) => {
+        setIsLoading(true);
+        const results = await fetchSearchResults(searchQuery, selectedFilter);
+        setSearchResults(results);
+        setIsLoading(false);
+    };
 
     return (
-        <div className={styles.container}>
+        <div>
             <h1 className={styles.title}>Trending Now</h1>
             <TrendingNowCarousel movies={movies} />
+            <SearchPanel onSearch={handleSearch} />
+            <div className={styles.resultsPanel}>
+                <h2 className={styles.resultsTitle}>Search Results</h2>
+                {isLoading ? (
+                    <div className={styles.placeholder}>Loading...</div>
+                ) : searchResults.length > 0 ? (
+                    <SearchResultsCarousel movies={searchResults} />
+                ) : (
+                    <div className={styles.placeholder}>Search results will appear here</div>
+                )}
+            </div>
         </div>
     );
-}
+};
+
+export default Page;

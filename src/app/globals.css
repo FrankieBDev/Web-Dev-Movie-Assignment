@@ -79,6 +79,10 @@
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   max-width: 100vw;
@@ -104,4 +108,8 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.page_container__aoG4z {
+  padding: 0 !important;
 }

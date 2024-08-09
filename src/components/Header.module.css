@@ -1,34 +1,37 @@
 .header {
     background-color: black;
-    padding: 30px 180px;
+    padding: 40px 60px 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .navLinks {
     display: flex;
     align-items: center;
-}
-
-.navItem {
-    margin-right: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex: 1;
 }
 
 .navItem a {
     color: white;
     text-decoration: none;
     font-size: 2.5rem;
-    padding: 5px;
+    padding: 1.5rem;
 }
 
 .logoContainer {
     flex: 1;
     display: flex;
     justify-content: center;
+    min-width: 200px;
 }
 
 .logo {
     max-height: 280px;
+    max-width: 100%;
 
 }

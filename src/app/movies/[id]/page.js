@@ -1,31 +1,53 @@
 "use client";
 import { useEffect, useState } from 'react';
-import { fetchMovieDetails } from '../../services/moviesApi';
+import { fetchMovieDetails, fetchGenres } from '../../services/moviesApi';
+import styles from "../[id]/page.module.css";
 
 const MovieDetails = ({ params }) => {
     const { id } = params;
     const [movie, setMovie] = useState(null);
+    const [genres, setGenres] = useState([]);
 
     useEffect(() => {
         const fetchDetails = async () => {
-            const data = await fetchMovieDetails(id);
-            setMovie(data);
+            const movieData = await fetchMovieDetails(id);
+            const genresData = await fetchGenres();
+            setMovie(movieData);
+            setGenres(genresData);
         };
 
         fetchDetails();
     }, [id]);
 
     if (!movie) return <p>Loading...</p>;
+    
+    const genreMap = genres.reduce((acc, genre) => {
+        acc[genre.id] = genre.name;
+        return acc;
+    }, {});
+
+    const movieGenres = movie.genres && movie.genres.length > 0
+        ? movie.genres.map(genre => genreMap[genre.id] || 'Unknown').join(', ')
+        : 'Unknown';
 
     return (
-        <div>
-            <h1>{movie.title}</h1>
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-            <p><strong>Overview:</strong> {movie.overview}</p>
-            <p><strong>Release Date:</strong> {movie.release_date}</p>
-            <p><strong>Vote Average:</strong> {movie.vote_average}</p>
-            <p><strong>Vote Count:</strong> {movie.vote_count}</p>
-            <p><strong>Popularity:</strong> {movie.popularity}</p>
+        <div className={styles.movieInfoContainer}>
+            <div className={styles.moviePosterContainer}>
+            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className={styles.image} />
+        </div>
+            <h1 className={styles.title}>{movie.title}</h1>
+            <div className={styles.date}>
+            <p className={styles.subTitle}><strong>Release Date:</strong> <br/> {new Date(movie.release_date).toLocaleDateString('en-GB')}</p>
+            </div>
+            <div className={styles.rating}>
+            <p className={styles.subTitle}><strong>Rating:</strong> <br/> {movie.vote_average}</p>
+            </div>
+            <div className={styles.genre}>
+            <p className={styles.subTitle}><strong>Genre:</strong> <br/> {movieGenres}</p>
+            </div>
+            <div className={styles.overview}>
+                <p className={styles.subTitle}><strong>Overview:</strong><br/> {movie.overview}</p>
+            </div>
         </div>
     );
 };

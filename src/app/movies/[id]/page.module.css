@@ -1,0 +1,64 @@
+.movieInfoContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.moviePosterContainer {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+}
+
+.image {
+    max-height: 500px;
+    border-radius: 60px;
+}
+
+.title {
+    text-align: left;
+    margin-bottom: 24px;
+    padding-top: 60px;
+    font-size: 2rem;
+}
+.date{
+    text-align: left;
+    margin-bottom: 24px;
+    padding: 5px;
+    font-size: 1rem;
+}
+.rating{
+    text-align: left;
+    margin-bottom: 24px;
+    padding: 5px;
+    font-size: 1rem;
+}
+.genre{
+    text-align: left;
+    margin-bottom: 24px;
+    padding: 5px;
+    font-size: 1rem;
+}
+.overview{
+    text-align: left;
+    margin-bottom: 24px;
+    padding: 5px;
+    font-size: 1rem;
+}
+
+.subTitle{
+    text-align: center;
+
+}
+.overview{
+    text-align: left;
+    margin-bottom: 24px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 300px;
+    padding-right: 300px;
+    font-size: 1rem;
+}
