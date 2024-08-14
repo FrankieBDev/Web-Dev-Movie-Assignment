@@ -71,3 +71,9 @@
     color: white;
     text-decoration: underline;
 }
+
+.text {
+    text-align: center;
+    padding-top: 20px;
+
+}

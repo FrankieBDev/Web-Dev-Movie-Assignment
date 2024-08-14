@@ -1,10 +1,14 @@
 "use client";
 import { useState } from 'react';
 import styles from './SearchPanel.module.css';
+import { fetchMoviesByKeyword, fetchMoviesByGenre, fetchMoviesByReleaseDate, fetchMoviesByDuration } from '@/app/services/moviesApi';
+import SearchResultsCarousel from "@/components/SearchResultsCarousel";
+
 
 const SearchPanel = ({ onSearch }) => {
     const [selectedFilter, setSelectedFilter] = useState('keyword');
     const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
     const handleFilterClick = (filter) => {
         setSelectedFilter(filter);
@@ -12,8 +16,24 @@ const SearchPanel = ({ onSearch }) => {
 
     const handleSearch = async () => {
         if (!searchQuery.trim()) return;
-        try {
-            await onSearch(searchQuery, selectedFilter);
+        let results = [];
+        try { switch (selectedFilter) {
+            case 'keyword':
+                results = await fetchMoviesByKeyword(searchQuery);
+                break;
+            case 'genre':
+                results = await fetchMoviesByGenre(searchQuery);
+                break;
+            case 'release_date':
+                results = await fetchMoviesByReleaseDate(searchQuery);
+                break;
+            case 'duration':
+                results = await fetchMoviesByDuration(searchQuery);
+                break;
+            default:
+                break;
+        }
+            setSearchResults(results);
             setSearchQuery('');
         } catch (error) {
             console.error('Error performing search:', error);
@@ -23,11 +43,9 @@ const SearchPanel = ({ onSearch }) => {
     const getPlaceholderText = () => {
         switch (selectedFilter) {
             case 'genre':
-                return 'Search by genre...';
+                return 'Search by genre... (e.g. Horror, Comedy...)';
             case 'release_date':
                 return 'Search by release date (e.g., 2024)...';
-            case 'rating':
-                return 'Search by rating (e.g., 5.2)...';
             case 'duration':
                 return 'Search by duration (e.g., 120 minutes)...';
             case 'keyword':
@@ -70,12 +88,6 @@ const SearchPanel = ({ onSearch }) => {
                             Release Date
                         </button>
                         <button
-                            className={selectedFilter === 'rating' ? styles.selected : styles.filterButton}
-                            onClick={() => handleFilterClick('rating')}
-                        >
-                            Rating
-                        </button>
-                        <button
                             className={selectedFilter === 'duration' ? styles.selected : styles.filterButton}
                             onClick={() => handleFilterClick('duration')}
                         >
@@ -83,9 +95,13 @@ const SearchPanel = ({ onSearch }) => {
                         </button>
                     </div>
                 </div>
+                <div>
+                        <SearchResultsCarousel movies={searchResults} />
+                </div>
             </div>
         </div>
     );
 };
+
 
 export default SearchPanel;

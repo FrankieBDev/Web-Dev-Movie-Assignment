@@ -24,26 +24,7 @@
     padding-top: 60px;
     font-size: 2rem;
 }
-.date{
-    text-align: left;
-    margin-bottom: 24px;
-    padding: 5px;
-    font-size: 1rem;
-}
-.rating{
-    text-align: left;
-    margin-bottom: 24px;
-    padding: 5px;
-    font-size: 1rem;
-}
-.genre{
-    text-align: left;
-    margin-bottom: 24px;
-    padding: 5px;
-    font-size: 1rem;
-}
-.overview{
-    text-align: left;
+.date, .rating, .genre, .duration, .cast, .overview{
     margin-bottom: 24px;
     padding: 5px;
     font-size: 1rem;
@@ -51,14 +32,11 @@
 
 .subTitle{
     text-align: center;
-
 }
+
 .overview{
     text-align: left;
     margin-bottom: 24px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 300px;
-    padding-right: 300px;
+    padding: 5px 300px;
     font-size: 1rem;
 }

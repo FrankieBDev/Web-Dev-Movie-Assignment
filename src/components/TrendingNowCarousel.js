@@ -5,7 +5,7 @@ import styles from './TrendingNowCarousel.module.css';
 
 const TrendingNowCarousel = ({ movies }) => {
     const carouselRef = useRef(null);
-    const router = useRouter();  // Correct useRouter hook
+    const router = useRouter();
 
     const scrollLeft = () => {
         if (carouselRef.current) {
@@ -24,7 +24,7 @@ const TrendingNowCarousel = ({ movies }) => {
     };
 
     if (!movies || movies.length === 0) {
-        return <div>No movies available</div>; // Handle empty state
+        return <div>No movies available</div>;
     }
 
     return (

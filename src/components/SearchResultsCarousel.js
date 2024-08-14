@@ -5,7 +5,7 @@ import styles from './TrendingNowCarousel.module.css';
 
 const SearchResultsCarousel = ({ movies }) => {
     const carouselRef = useRef(null);
-    const router = useRouter();  // Correct useRouter hook
+    const router = useRouter();
 
     const scrollLeft = () => {
         if (carouselRef.current) {
@@ -24,7 +24,7 @@ const SearchResultsCarousel = ({ movies }) => {
     };
 
     if (!movies || movies.length === 0) {
-        return <div>No movies found</div>; // Handle empty state
+        return <div className={styles.text}>Enter your search above to view results!</div>;
     }
 
     return (
@@ -37,7 +37,9 @@ const SearchResultsCarousel = ({ movies }) => {
                     <div key={movie.id} className={styles.movieItem}>
                         <div className={styles.moviePosterContainer}>
                             <img
-                                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                src={movie.poster_path
+                                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                                    : 'MoviePosterUnavailable.png'}
                                 alt={movie.title}
                                 className={styles.moviePoster}
                             />

@@ -22,7 +22,7 @@
 }
 
 .easterEgg {
-    color: #000; /* Dark color, almost invisible against black background */
+    color: #000;
     transition: color 0.3s ease;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .easterEgg:hover {
-    color: #fff; /* Changes to white when hovered */
+    color: #fff;
 }
 
 .easterEgg a:hover {

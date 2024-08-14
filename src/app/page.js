@@ -1,11 +1,10 @@
 "use client";
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import SearchPanel from '../components/SearchPanel';
 import TrendingNowCarousel from '../components/TrendingNowCarousel';
-import SearchResultsCarousel from '../components/SearchResultsCarousel';
-import { fetchPopularMovies, fetchSearchResults } from '@/app/services/moviesApi';
+import {fetchPopularMovies, fetchSearchResults} from '@/app/services/moviesApi';
 import styles from "./page.module.css";
-import Footer from '/src/components/Footer';
+
 
 const Page = () => {
     const [movies, setMovies] = useState([]);
@@ -33,18 +32,8 @@ const Page = () => {
     return (
         <div>
             <h1 className={styles.title}>Trending Now</h1>
-            <TrendingNowCarousel movies={movies} />
-            <SearchPanel onSearch={handleSearch} />
-            <div className={styles.resultsPanel}>
-                <h2 className={styles.resultsTitle}>Search Results</h2>
-                {isLoading ? (
-                    <div className={styles.placeholder}>Loading...</div>
-                ) : searchResults.length > 0 ? (
-                    <SearchResultsCarousel movies={searchResults} />
-                ) : (
-                    <div className={styles.placeholder}>Search results will appear here</div>
-                )}
-            </div>
+            <TrendingNowCarousel movies={movies}/>
+            <SearchPanel onSearch={handleSearch}/>
         </div>
     );
 };
