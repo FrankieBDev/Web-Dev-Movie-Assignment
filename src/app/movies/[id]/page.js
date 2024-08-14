@@ -1,13 +1,16 @@
 "use client";
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import {fetchMovieDetails, fetchGenres, fetchMovieCast} from '../../services/moviesApi';
 import styles from "../[id]/page.module.css";
+import useWatchlist from "@/app/hooks/useWatchlist";
 
-const MovieDetails = ({ params }) => {
-    const { id } = params;
+const MovieDetails = ({params}) => {
+    const {id} = params;
     const [movie, setMovie] = useState(null);
     const [genres, setGenres] = useState([]);
     const [cast, setCast] = useState([]);
+    const [isInWatchlist, setIsInWatchlist] = useState(false);
+    const { saveToWatchList, removeFromWatchList, isMovieInWatchlist } = useWatchlist();
 
     useEffect(() => {
         const fetchDetails = async () => {
@@ -17,13 +20,14 @@ const MovieDetails = ({ params }) => {
             setMovie(movieData);
             setGenres(genresData);
             setCast(castData);
+            setIsInWatchlist(await isMovieInWatchlist(movieData.id));
         };
 
         fetchDetails();
-    }, [id]);
+    }, [id, isInWatchlist]);
 
     if (!movie) return <p>Loading...</p>;
-    
+
     const genreMap = genres.reduce((acc, genre) => {
         acc[genre.id] = genre.name;
         return acc;
@@ -37,18 +41,39 @@ const MovieDetails = ({ params }) => {
 
     const roundedRating = Math.round(movie.vote_average);
 
+    const handleWatchlistClick = () => {
+        if (isInWatchlist) {
+            removeFromWatchList(movie.id);
+        } else {
+            saveToWatchList(movie.id);
+        }
+        setIsInWatchlist(!isInWatchlist);
+    };
+
     return (
         <div className={styles.movieInfoContainer}>
             <div className={styles.moviePosterContainer}>
                 <img
                     src={movie.poster_path
-                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                    : '/MoviePosterUnavailable.png'}
+                        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                        : '/MoviePosterUnavailable.png'}
                     alt={movie.title}
                     className={styles.image}
-                    />
+                />
             </div>
             <h1 className={styles.title}>{movie.title}</h1>
+            <div className={styles.watchlistContainer}>
+                <img
+                    src={isInWatchlist ? "/ClickedHeartCat.png" : "/HeartCat.png"}
+                    alt={isInWatchlist ? "In Watchlist" : "Add to Watchlist"}
+                    title={isInWatchlist ? "In Watchlist" : "Add to Watchlist"}
+                    className={styles.watchlistImage}
+                    onClick={handleWatchlistClick}
+                    style={{ cursor: 'pointer' }}
+                />
+                <p className={styles.watchlistText}><strong>{isInWatchlist ? "In Watchlist" : "Add to Watchlist"}</strong></p>
+
+            </div>
             <div className={styles.date}>
                 <p className={styles.subTitle}><strong>Release Date:</strong>
                     <br/> {new Date(movie.release_date).toLocaleDateString('en-GB')}</p>

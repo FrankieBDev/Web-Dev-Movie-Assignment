@@ -24,6 +24,28 @@
     padding-top: 60px;
     font-size: 2rem;
 }
+
+.watchlistContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.watchlistImage {
+    width: 100px;
+    height: auto;
+}
+
+.watchlistText {
+    margin-top: 10px;
+    margin-bottom: 24px;
+    padding: 5px;
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+}
+
 .date, .rating, .genre, .duration, .cast, .overview{
     margin-bottom: 24px;
     padding: 5px;
