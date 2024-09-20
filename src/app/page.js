@@ -31,9 +31,9 @@ const Page = () => {
 
     return (
         <div>
+            <SearchPanel onSearch={handleSearch}/>
             <h1 className={styles.title}>Trending Now</h1>
             <TrendingNowCarousel movies={movies}/>
-            <SearchPanel onSearch={handleSearch}/>
         </div>
     );
 };

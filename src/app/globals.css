@@ -38,6 +38,8 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+
+  --font-size-base: 16px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -97,6 +99,19 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --font-size-base: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --font-size-base: 20px;
+  }
 }
 
 a {
@@ -112,4 +127,23 @@ a {
 
 .page_container__aoG4z {
   padding: 0 !important;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 3rem;
+  }
 }

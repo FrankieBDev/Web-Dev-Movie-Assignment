@@ -3,27 +3,28 @@ import styles from "./Header.module.css";
 import Link from 'next/link';
 
 export default function Header() {
-
     return (
         <header className={styles.header}>
-            <div className={styles.navContainer}>
-                <div className={styles.navItem}>
-                    <Link href="/">Home</Link>
+            <div className={styles.headerContent}>
+                <div className={styles.navContainer}>
+                    <div className={styles.navItem}>
+                        <Link href="/">Home</Link>
+                    </div>
+                    <div className={styles.navItem}>
+                        <Link href="/about">About</Link>
+                    </div>
                 </div>
-                <div className={styles.navItem}>
-                    <Link href="/about">About</Link>
+                <div className={styles.logoContainer}>
+                    <img src="/FrankiesMoviesLogo.png" alt="Logo" className={styles.logo} />
                 </div>
-            </div>
-            <div className={styles.logoContainer}>
-                <img src="/FrankiesMoviesLogo.png" alt="Logo" className={styles.logo}/>
-            </div>
-            <div className={styles.navContainer}>
-            <div className={styles.navItem}>
-                <Link href="/#SearchPanel">Search</Link>
-            </div>
-            <div className={styles.navItem}>
-                <Link href="/watchlist">Watchlist</Link>
-            </div>
+                <div className={styles.navContainer}>
+                    <div className={styles.navItem}>
+                        <Link href="/#SearchPanel">Search</Link>
+                    </div>
+                    <div className={styles.navItem}>
+                        <Link href="/watchlist">Watchlist</Link>
+                    </div>
+                </div>
             </div>
         </header>
     );

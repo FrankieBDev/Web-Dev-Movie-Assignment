@@ -1,38 +1,39 @@
 .panelContainer {
     width: 100%;
-    background-color: #fff;
-    padding: 5px 5px;
+    /*background-color: #fff;*/
+    padding: 5px;
+    /*margin-top: 20px;*/
 }
 
 .innerPanel {
     background-color: #000;
     color: #fff;
-    padding: 40px;
+    padding: 20px;
     margin: 0 auto;
     width: 100%;
     position: relative;
 }
 
 .panelTitle {
-    font-size: 2rem;
-    margin-bottom: 30px;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
     text-align: center;
 }
 
-.panelText{
-    font-size: 1.5rem;
-    margin-bottom: 30px;
+.panelText {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
     text-align: center;
 }
 
 .searchInput {
     width: 100%;
-    max-width: 1200px;
-    padding: 15px;
+    max-width: 100%;
+    padding: 12px;
     border-radius: 24px;
-    border: none;
+    border: 2px solid #fff;
     box-sizing: border-box;
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin: 0 auto;
     text-align: center;
     display: block;
@@ -43,12 +44,12 @@
     color: #000;
     border-radius: 100px;
     border: 2px solid #000;
-    padding: 15px 30px;
+    padding: 12px 24px;
     cursor: pointer;
     display: block;
     width: 100%;
-    max-width: 200px;
-    font-size: 2rem;
+    max-width: 180px;
+    font-size: 1.5rem;
     margin: 20px auto;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
@@ -66,13 +67,13 @@
 }
 
 .filterContainer {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .filters {
     display: flex;
-    gap: 10px;
     flex-wrap: wrap;
+    gap: 10px;
     justify-content: center;
 }
 
@@ -81,13 +82,13 @@
     color: #000;
     border: 2px solid #000;
     border-radius: 24px;
-    padding: 10px 10px;
+    padding: 10px;
     cursor: pointer;
     display: block;
     width: 100%;
     max-width: 150px;
     font-size: 1rem;
-    margin: 20px auto;
+    margin: 10px;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
@@ -102,15 +103,30 @@
     color: #fff;
     border-color: #fff;
     border-radius: 24px;
-    padding: 10px 10px;
+    padding: 10px;
     display: block;
     width: 100%;
     max-width: 150px;
     font-size: 1.1rem;
-    margin: 20px auto;
+    margin: 10px;
 }
 
 .resultsPanel {
     padding: 20px;
     background-color: #f9f9f9;
+}
+
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filterButton {
+        max-width: 100%;
+    }
+
+    .selected {
+        max-width: 100%;
+    }
 }

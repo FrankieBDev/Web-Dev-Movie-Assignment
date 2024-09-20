@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import useWatchlist from '../hooks/useWatchlist';
-import styles from './Watchlist.module.css';
+import styles from './watchlist.module.css';
 
 export default function WatchList() {
     const { watchList, removeFromWatchList } = useWatchlist();
