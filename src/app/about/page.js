@@ -7,7 +7,9 @@ export default function About() {
             <h1 className={styles.title}>About</h1>
 
             <div className={styles.logoContainer}>
-                <img src="/FrankiesMoviesLogo.png" alt="Logo" className={styles.logo}/>
+                <picture>
+                    <img src="/FrankiesMoviesLogo.png" alt="Logo" className={styles.logo}/>
+                    </picture>
             </div>
             <p className={styles.textA}>
                 This page is still under construction.  It is filled with placeholder items for testing purposes.

@@ -1,5 +1,5 @@
 "use client";
-import styles from "./Header.module.css";
+import styles from "./header.module.css";
 import Link from 'next/link';
 
 export default function Header() {
@@ -15,7 +15,9 @@ export default function Header() {
                     </div>
                 </div>
                 <div className={styles.logoContainer}>
-                    <img src="/FrankiesMoviesLogo.png" alt="Logo" className={styles.logo} />
+                    <picture>
+                        <img src="/FrankiesMoviesLogo.png" alt="Logo" className={styles.logo}/>
+                    </picture>
                 </div>
                 <div className={styles.navContainer}>
                     <div className={styles.navItem}>

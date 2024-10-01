@@ -1,11 +1,11 @@
 "use client";
 import { useState } from 'react';
-import styles from './SearchPanel.module.css';
+import styles from './searchPanel.module.css';
 import { fetchMoviesByKeyword, fetchMoviesByGenre, fetchMoviesByReleaseDate, fetchMoviesByDuration } from '@/app/services/moviesApi';
-import SearchResultsCarousel from "@/components/SearchResultsCarousel";
+import SearchResultsCarousel from "@/components/searchResultsCarousel";
 
 
-const SearchPanel = ({ onSearch }) => {
+const SearchPanel = () => {
     const [selectedFilter, setSelectedFilter] = useState('keyword');
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);

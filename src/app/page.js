@@ -1,8 +1,8 @@
 "use client";
 import {useState, useEffect} from 'react';
-import SearchPanel from '../components/SearchPanel';
-import TrendingNowCarousel from '../components/TrendingNowCarousel';
-import {fetchPopularMovies, fetchSearchResults} from '@/app/services/moviesApi';
+import SearchPanel from '../components/searchPanel';
+import TrendingNowCarousel from '../components/trendingNowCarousel';
+import {fetchPopularMovies, fetchMoviesByKeyword} from '@/app/services/moviesApi';
 import styles from "./page.module.css";
 
 
@@ -24,7 +24,7 @@ const Page = () => {
 
     const handleSearch = async (searchQuery, selectedFilter) => {
         setIsLoading(true);
-        const results = await fetchSearchResults(searchQuery, selectedFilter);
+        const results = await fetchMoviesByKeyword(searchQuery, selectedFilter);
         setSearchResults(results);
         setIsLoading(false);
     };

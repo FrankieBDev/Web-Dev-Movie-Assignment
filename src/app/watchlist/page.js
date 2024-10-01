@@ -32,47 +32,53 @@ export default function WatchList() {
             {watchList.length > 0 ? (
                 <div className={styles.carouselContainer}>
                     <button className={styles.scrollButton} onClick={scrollLeft}>
-                        <img src="/leftArrow.png" alt="Scroll Left"/>
+                        <picture>
+                            <img src="/leftArrow.png" alt="Scroll Left"/>
+                        </picture>
                     </button>
                     <div className={styles.carousel} ref={carouselRef}>
                         {watchList.map((movie) => (
                             <div key={movie.id} className={styles.movieItem}>
                                 <div className={styles.moviePosterContainer}>
-                                    <img
-                                        src={movie.poster_path
-                                            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                                            : '/path/to/placeholder.jpg'}
-                                        alt={movie.title}
-                                        className={styles.moviePoster}
-                                    />
-                                    <div className={styles.movieOverlay}>
-                                        <h2 className={styles.movieTitle}>{movie.title}</h2>
-                                        <p className={styles.movieDescription}>
-                                            {movie.overview
-                                                ? movie.overview.length > 100
-                                                    ? `${movie.overview.substring(0, 100)}...`
-                                                    : movie.overview
-                                                : 'No overview available'}
+                                    <picture>
+                                        <img
+                                            src={movie.poster_path
+                                                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                                                : '/path/to/placeholder.jpg'}
+                                            alt={movie.title}
+                                            className={styles.moviePoster}
+                                        />
+                                    </picture>
+                                            <div className={styles.movieOverlay}>
+                                                <h2 className={styles.movieTitle}>{movie.title}</h2>
+                                                <p className={styles.movieDescription}>
+                                                    {movie.overview
+                                                        ? movie.overview.length > 100
+                                                            ? `${movie.overview.substring(0, 100)}...`
+                                                            : movie.overview
+                                                        : 'No overview available'}
+                                                    <button
+                                                        onClick={() => handleSeeMoreClick(movie.id)}
+                                                        className={styles.seeMoreLink}
+                                                    >
+                                                        See More
+                                                    </button>
+                                                </p>
+                                            </div>
                                             <button
-                                                onClick={() => handleSeeMoreClick(movie.id)}
-                                                className={styles.seeMoreLink}
+                                                className={styles.removeButton}
+                                                onClick={() => removeFromWatchList(movie.id)}
                                             >
-                                                See More
+                                                Remove
                                             </button>
-                                        </p>
-                                    </div>
-                                    <button
-                                        className={styles.removeButton}
-                                        onClick={() => removeFromWatchList(movie.id)}
-                                    >
-                                        Remove
-                                    </button>
                                 </div>
                             </div>
                         ))}
                     </div>
                     <button className={styles.scrollButton} onClick={scrollRight}>
-                        <img src="/rightArrow.png" alt="Scroll Right"/>
+                        <picture>
+                            <img src="/rightArrow.png" alt="Scroll Right"/>
+                            </picture>
                     </button>
                 </div>
             ) : (

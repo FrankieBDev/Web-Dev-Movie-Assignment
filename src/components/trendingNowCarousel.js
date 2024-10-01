@@ -1,21 +1,21 @@
 "use client";
-import { useRef } from 'react';
-import { useRouter } from 'next/navigation';
-import styles from './TrendingNowCarousel.module.css';
+import {useRef} from 'react';
+import {useRouter} from 'next/navigation';
+import styles from './trendingNowCarousel.module.css';
 
-const SearchResultsCarousel = ({ movies }) => {
+const TrendingNowCarousel = ({movies}) => {
     const carouselRef = useRef(null);
     const router = useRouter();
 
     const scrollLeft = () => {
         if (carouselRef.current) {
-            carouselRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+            carouselRef.current.scrollBy({left: -200, behavior: 'smooth'});
         }
     };
 
     const scrollRight = () => {
         if (carouselRef.current) {
-            carouselRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+            carouselRef.current.scrollBy({left: 200, behavior: 'smooth'});
         }
     };
 
@@ -24,29 +24,32 @@ const SearchResultsCarousel = ({ movies }) => {
     };
 
     if (!movies || movies.length === 0) {
-        return <div className={styles.text}>Enter your search above to view results!</div>;
+        return <div>No movies available</div>;
     }
 
     return (
         <div className={styles.carouselContainer}>
             <button className={styles.scrollButton} onClick={scrollLeft}>
-                <img src="/leftArrow.png" alt="Scroll Left"/>
+                <picture>
+                    <img src="/leftArrow.png" alt="Scroll Left"/>
+                </picture>
             </button>
             <div className={styles.carousel} ref={carouselRef}>
                 {movies.map((movie) => (
                     <div key={movie.id} className={styles.movieItem}>
                         <div className={styles.moviePosterContainer}>
-                            <img
-                                src={movie.poster_path
-                                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                                    : 'MoviePosterUnavailable.png'}
-                                alt={movie.title}
-                                className={styles.moviePoster}
-                            />
+                            <picture>
+                                <img
+                                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                    alt={movie.title}
+                                    className={styles.moviePoster}
+                                />
+                            </picture>
                             <div className={styles.movieOverlay}>
                                 <h2 className={styles.movieTitle}>{movie.title}</h2>
                                 <p className={styles.movieDescription}>
                                     {movie.overview.length > 100 ? `${movie.overview.substring(0, 100)}...` : movie.overview}
+                                    <br/>
                                     <button
                                         onClick={() => handleSeeMoreClick(movie.id)}
                                         className={styles.seeMoreLink}
@@ -60,10 +63,12 @@ const SearchResultsCarousel = ({ movies }) => {
                 ))}
             </div>
             <button className={styles.scrollButton} onClick={scrollRight}>
-                <img src="/rightArrow.png" alt="Scroll Right"/>
+                <picture>
+                    <img src="/rightArrow.png" alt="Scroll Right"/>
+                </picture>
             </button>
         </div>
     );
 };
 
-export default SearchResultsCarousel;
+export default TrendingNowCarousel;
