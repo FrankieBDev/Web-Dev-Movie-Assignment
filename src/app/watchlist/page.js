@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import {useRef} from 'react';
 import { useRouter } from 'next/navigation';
 import useWatchlist from '../hooks/useWatchlist';
 import styles from './watchlist.module.css';

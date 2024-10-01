@@ -5,11 +5,17 @@ import { fetchMovieDetails } from '../services/moviesApi';
 
 export default function useWatchlist() {
     const [watchList, setWatchList] = useState(() => {
-        return JSON.parse(localStorage.getItem('watchList')) ?? [];
+        if (typeof window !== 'undefined') {
+            const storedWatchlist = localStorage.getItem('watchList');
+            return storedWatchlist ? JSON.parse(storedWatchlist) : [];
+        }
+        return [];
     });
 
     useEffect(() => {
-        localStorage.setItem('watchList', JSON.stringify(watchList));
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('watchList', JSON.stringify(watchList));
+        }
     }, [watchList]);
 
     const saveToWatchList = async (movieId) => {
@@ -27,14 +33,10 @@ export default function useWatchlist() {
         setWatchList((oldWatchlist) => oldWatchlist.filter(item => item.id !== movieId));
     };
 
-    const isMovieInWatchlist = (movieId) => {
-        return watchList.some(item => item.id === movieId);
-    };
-
     return {
         watchList,
         saveToWatchList,
         removeFromWatchList,
-        isMovieInWatchlist
+
     };
 }
