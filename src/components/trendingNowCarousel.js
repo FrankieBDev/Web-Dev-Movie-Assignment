@@ -1,7 +1,7 @@
 "use client";
 import {useRef} from 'react';
 import {useRouter} from 'next/navigation';
-import styles from './trendingNowCarousel.module.css';
+import styles from './carousel.module.css';
 
 const TrendingNowCarousel = ({movies}) => {
     const carouselRef = useRef(null);
