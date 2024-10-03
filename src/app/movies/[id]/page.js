@@ -80,8 +80,8 @@ const MovieDetails = ({params}) => {
                         style={{cursor: 'pointer'}}
                     />
                 </picture>
-                        <p className={styles.watchlistText}>
-                            <strong>{isInWatchlist ? "In Watchlist" : "Add to Watchlist"}</strong></p>
+                <p className={styles.watchlistText}>
+                    <strong>{isInWatchlist ? "In Watchlist" : "Add to Watchlist"}</strong></p>
 
             </div>
             <div className={styles.date}>

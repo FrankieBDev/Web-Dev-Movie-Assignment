@@ -67,9 +67,31 @@
     text-align: center;
 }
 
-.seeMoreLink {
-    color: white;
-    text-decoration: underline;
+.seeMoreLink{
+    background-color: #fff;
+    color: #000;
+    border-radius: 100px;
+    border: 2px solid #000;
+    padding: 10px 10px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    max-width: 100px;
+    font-size: 1rem;
+    margin: 20px auto;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.seeMoreLink:hover {
+    background-color: #000;
+    color: #fff;
+    border-color: #fff;
+}
+
+.seeMoreLink:active {
+    background-color: #000;
+    color: #fff;
+    border-color: #fff;
 }
 
 .text {

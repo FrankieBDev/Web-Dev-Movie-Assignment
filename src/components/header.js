@@ -15,9 +15,11 @@ export default function Header() {
                     </div>
                 </div>
                 <div className={styles.logoContainer}>
+                    <Link href="/">
                     <picture>
-                        <img src="/FrankiesMoviesLogo.png" alt="Logo" className={styles.logo}/>
+                        <img src="/FrankiesMoviesLogo.png" alt="Site Logo" className={styles.logo}/>
                     </picture>
+                    </Link>
                 </div>
                 <div className={styles.navContainer}>
                     <div className={styles.navItem}>
