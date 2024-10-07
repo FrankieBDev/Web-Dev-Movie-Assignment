@@ -26,7 +26,7 @@ export default function Header() {
                         <Link href="/#SearchPanel">Search</Link>
                     </div>
                     <div className={styles.navItem}>
-                        <Link href="/watchlist">Watchlist</Link>
+                        {/*<Link href="/watchlist">Watchlist</Link>*/}
                     </div>
                 </div>
             </div>

@@ -20,10 +20,15 @@
 .moviePosterContainer {
     display: flex;
     align-items: flex-start;
-    max-height: 70%;
+    max-height: 50vh;
+    max-width: 50%;
 }
 
 .image {
+    width: auto;
+    max-height: 100%;
+    height: auto;
+    object-fit: contain;
     border-radius: 60px;
 }
 
@@ -48,10 +53,7 @@
     justify-content: center;
     align-items: flex-start;
     flex-direction: row;
-    padding-top: 30px;
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-bottom: 60px;
+    padding: 30px 60px 60px;
     width: 100%;
 }
 
@@ -75,11 +77,11 @@
 }
 
 .secondaryInfoContainer {
-    max-width: 40%;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
+    max-width: 50%;
     padding-left: 60px;
     padding-right: 60px;
 }
@@ -102,4 +104,115 @@
     font-size: 1rem;
 
 }
+
+@media (max-width: 1024px) {
+    .moviePosterContainer {
+        max-height: 40vh;
+        max-width: 30%;
+    }
+
+    .image {
+        max-height: 100%;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border-radius: 60px;
+    }
+}
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.infoText {
+    text-align: center;
+}
+
+.secondaryInfoContainer {
+    max-width: 90%;
+    padding: 0 2vw;
+    align-items: center;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .movieInfoContainer {
+        font-size: 4vw;
+        flex-direction: column;
+        padding: 1vh 1vw;
+        text-align: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    .watchlistInfoContainer {
+        flex-direction: column;
+        align-items: center;
+        padding: 1vh 0;
+        width: 100%;
+    }
+
+    .moviePosterContainer {
+        max-height: 200vh;
+        width: auto;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 2vw 2vw;
+    }
+
+    .image {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border-radius: 60px;
+    }
+
+    .secondaryInfoContainer {
+        max-width: 90%;
+        padding: 0 2vw;
+        align-items: center;
+        text-align: center;
+        font-size: 4vw;
+    }
+
+    .trailerContainer {
+        width: 100%;
+        margin-top: 2vh;
+    }
+
+    .trailerVideo {
+        width: 90%;
+        height: auto;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .watchlistImage {
+        width: 20vw;
+    }
+
+    .infoContainer {
+        text-align: center;
+    }
+    .subtitle{
+        text-align: center;
+    }
+    .infoText{
+        text-align: center;
+    }
+}
+
+
+
 

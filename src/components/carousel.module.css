@@ -64,7 +64,7 @@
 
 .movieDescription {
     font-size: 1rem;
-    margin-top: 5px;
+    margin-top: 1px;
     text-align: center;
 }
 
@@ -90,4 +90,20 @@
 .text {
     text-align: center;
     padding-top: 20px;
+}
+
+.removeButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 5px;
+}
+
+.removeButton:hover {
+    background-color: darkred;
 }

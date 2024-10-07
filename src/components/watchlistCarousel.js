@@ -2,10 +2,10 @@
 
 import {useRef} from 'react';
 import { useRouter } from 'next/navigation';
-import useWatchlist from '../hooks/useWatchlist';
-import styles from './watchlist.module.css';
+import useWatchlist from '../app/hooks/useWatchlist';
+import styles from './carousel.module.css';
 
-export default function WatchList() {
+export default function Watchlist() {
     const { watchList, removeFromWatchList } = useWatchlist();
     const carouselRef = useRef(null);
     const router = useRouter();
@@ -23,12 +23,11 @@ export default function WatchList() {
     };
 
     const handleSeeMoreClick = (id) => {
-        router.push(`/movie/${id}`);
+        router.push(`/movies/${id}`);
     };
 
     return (
         <div className={styles.watchlistContainer}>
-            <h1 className={styles.title}>Watchlist</h1>
             {watchList.length > 0 ? (
                 <div className={styles.carouselContainer}>
                     <button className={styles.scrollButton} onClick={scrollLeft}>
@@ -49,28 +48,22 @@ export default function WatchList() {
                                             className={styles.moviePoster}
                                         />
                                     </picture>
-                                            <div className={styles.movieOverlay}>
-                                                <h2 className={styles.movieTitle}>{movie.title}</h2>
-                                                <p className={styles.movieDescription}>
-                                                    {movie.overview
-                                                        ? movie.overview.length > 100
-                                                            ? `${movie.overview.substring(0, 100)}...`
-                                                            : movie.overview
-                                                        : 'No overview available'}
-                                                    <button
-                                                        onClick={() => handleSeeMoreClick(movie.id)}
-                                                        className={styles.seeMoreLink}
-                                                    >
-                                                        See More
-                                                    </button>
-                                                </p>
-                                            </div>
-                                            <button
-                                                className={styles.removeButton}
-                                                onClick={() => removeFromWatchList(movie.id)}
-                                            >
-                                                Remove
-                                            </button>
+                                    <div
+                                        className={styles.movieOverlay}
+                                        onClick={() => handleSeeMoreClick(movie.id)}
+                                    >
+                                        <h2 className={styles.movieTitle}>{movie.title}</h2>
+                                        <p className={styles.movieDescription}>
+                                            {movie.overview.length > 60 ? `${movie.overview.substring(0, 160)}...` : movie.overview}
+                                        </p>
+                                        <span className={styles.seeMoreText}>See More</span>
+                                    </div>
+                                    <button
+                                        className={styles.removeButton}
+                                        onClick={() => removeFromWatchList(movie.id)}
+                                    >
+                                        Remove
+                                    </button>
                                 </div>
                             </div>
                         ))}
@@ -78,7 +71,7 @@ export default function WatchList() {
                     <button className={styles.scrollButton} onClick={scrollRight}>
                         <picture>
                             <img src="/rightArrow.png" alt="Scroll Right"/>
-                            </picture>
+                        </picture>
                     </button>
                 </div>
             ) : (

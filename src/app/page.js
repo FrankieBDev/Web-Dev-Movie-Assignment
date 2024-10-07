@@ -2,6 +2,7 @@
 import {useState, useEffect} from 'react';
 import SearchPanel from '../components/searchPanel';
 import TrendingNowCarousel from '../components/trendingNowCarousel';
+import Watchlist from '../components/watchlistCarousel';
 import {fetchPopularMovies, fetchMoviesByKeyword} from '@/app/services/moviesApi';
 import styles from "./page.module.css";
 
@@ -34,6 +35,8 @@ const Page = () => {
             <SearchPanel onSearch={handleSearch}/>
             <h1 className={styles.title}>Trending Now</h1>
             <TrendingNowCarousel movies={movies}/>
+            <h1 className={styles.title}>Watchlist</h1>
+            <Watchlist movies={movies}/>
         </div>
     );
 };

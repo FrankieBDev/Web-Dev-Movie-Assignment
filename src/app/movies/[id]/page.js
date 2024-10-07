@@ -61,7 +61,6 @@ const MovieDetails = ({params}) => {
     };
 
     return (
-
         <div className={styles.movieInfoContainer}>
             <div className={styles.titleContainer}>
                 <h1 className={styles.title}>{movie.title}</h1>

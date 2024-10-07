@@ -51,9 +51,9 @@ const TrendingNowCarousel = ({ movies }) => {
                             >
                                 <h2 className={styles.movieTitle}>{movie.title}</h2>
                                 <p className={styles.movieDescription}>
-                                    {movie.overview.length > 160 ? `${movie.overview.substring(0, 160)}...` : movie.overview}
+                                    {movie.overview.length > 100 ? `${movie.overview.substring(0, 160)}...` : movie.overview}
                                 </p>
-                                <span className={styles.seeMoreText}>See More</span> {/* Changed to span */}
+                                <span className={styles.seeMoreText}>See More</span>
                             </div>
                         </div>
                     </div>
