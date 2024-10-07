@@ -58,12 +58,14 @@ export default function Watchlist() {
                                         </p>
                                         <span className={styles.seeMoreText}>See More</span>
                                     </div>
+                                    <div className={styles.removeContainer}>
                                     <button
                                         className={styles.removeButton}
                                         onClick={() => removeFromWatchList(movie.id)}
                                     >
                                         Remove
                                     </button>
+                                    </div>
                                 </div>
                             </div>
                         ))}
