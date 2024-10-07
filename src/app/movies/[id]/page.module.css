@@ -1,5 +1,4 @@
 .movieInfoContainer {
-    flex: 1;
     display: flex;
     justify-content: center;
     padding-top: 20px;
@@ -7,29 +6,59 @@
     flex-direction: column;
 }
 
-.moviePosterContainer {
-    flex: 1;
+.titleContainer {
     display: flex;
-    align-items: flex-start;
-}
-
-.image {
-    max-height: 500px;
-    border-radius: 60px;
+    justify-content: center;
 }
 
 .title {
     text-align: left;
     margin-bottom: 24px;
-    padding-top: 60px;
     font-size: 2rem;
+}
+
+.moviePosterContainer {
+    display: flex;
+    align-items: flex-start;
+    max-height: 70%;
+}
+
+.image {
+    border-radius: 60px;
+}
+
+.trailerContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: auto;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.trailerVideo {
+    height: 40rem;
+    width: 80%;
+    border: none;
+}
+
+.watchlistInfoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    padding-top: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+    width: 100%;
 }
 
 .watchlistContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
 }
 
 .watchlistImage {
@@ -39,27 +68,38 @@
 
 .watchlistText {
     margin-top: 10px;
-    margin-bottom: 24px;
-    padding: 5px;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    text-align: center;
     color: white;
     cursor: pointer;
 }
 
-.date, .rating, .genre, .duration, .cast, .overview{
+.secondaryInfoContainer {
+    max-width: 40%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.infoContainer {
     margin-bottom: 24px;
-    padding: 5px;
+    padding-bottom: 5px;
     font-size: 1rem;
-}
-
-.subTitle{
-    text-align: center;
-}
-
-.overview{
     text-align: left;
-    margin-bottom: 24px;
-    padding: 5px 20px;
+    max-width: 100%;
+}
+
+.subtitle {
+    display: flex;
+    align-items: start;
+    padding-bottom: 10px;
+}
+
+.infoText {
     font-size: 1rem;
+
 }
 

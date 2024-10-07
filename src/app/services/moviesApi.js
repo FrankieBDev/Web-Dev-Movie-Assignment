@@ -97,3 +97,16 @@ export const fetchMoviesByDuration = async (duration) => {
         return [];
     }
 };
+
+export const fetchMovieVideos = async (id) => {
+    try {
+        const response = await fetch(`${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}`);
+        const data = await response.json();
+        const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+        return trailer ? trailer.key : null;
+    } catch (error) {
+        console.error('Error fetching movie videos:', error);
+        return null;
+    }
+};
+
