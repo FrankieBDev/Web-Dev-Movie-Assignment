@@ -1,6 +1,6 @@
 "use client";
-import {useEffect, useState} from 'react';
-import {useRouter} from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from '/src/components/searchPanel.module.css';
 import {
     fetchGenres,
@@ -100,7 +100,7 @@ const Page = () => {
     return (
         <div className={styles.panelContainer}>
             <h2 className={styles.panelTitle}>Advanced Search</h2>
-            <div className={styles.filterContainer}>
+            <div className={styles.searchContainer}>
                 <input
                     type="text"
                     placeholder="Search for a movie..."
@@ -115,89 +115,90 @@ const Page = () => {
 
             <h3 className={styles.panelSubtitle}>Filter Results By:</h3>
 
-            <div className={styles.filterRow}>
-                <h4 className={styles.filterTitle}>
-                    <button
-                        className={`${styles.filterButtonLrg} ${selectedGenres.length ? styles.selected : ''}`}
-                        onClick={() => setShowGenres(prev => !prev)}
-                    >
-                        Genre
-                    </button>
-                </h4>
-            </div>
-
-            {showGenres && (
-                <div className={styles.filters}>
-                    {genres.map(genre => (
-                        <button
-                            key={genre.id}
-                            className={`${styles.filterButton} ${selectedGenres.includes(genre.id) ? styles.selected : ''}`}
-                            onClick={() => handleGenreChange(genre.id)}
-                        >
-                            {genre.name}
-                        </button>
-                    ))}
-                </div>
-            )}
-            <div className={styles.filterRow}>
-                <h4 className={styles.filterTitle}>
-                    <button
-                        className={`${styles.filterButtonLrg} ${selectedReleaseYear.length ? styles.selected : ''}`}
-                        onClick={() => setShowYearOptions(prev => !prev)}
-                    >
-                        Release Year
-                    </button>
-                </h4>
-            </div>
-
-            {showYearOptions && (
-                <div className={styles.filters}>
-                    {[...Array(31).keys()].map(year => {
-                        const yearValue = new Date().getFullYear() - year;
-                        return (
+            <div className={styles.filtersContainer}>
+                <div className={styles.filterRow}>
+                    <div className={styles.filterColumn}>
+                        <h4 className={styles.filterTitle}>
                             <button
-                                key={yearValue}
-                                className={`${styles.filterButton} ${selectedReleaseYear.includes(yearValue) ? styles.selected : ''}`}
-                                onClick={() => handleYearChange(yearValue)}
+                                className={`${styles.filterButtonLrg} ${selectedGenres.length ? styles.selectedLrg : ''}`}
+                                onClick={() => setShowGenres(prev => !prev)}
                             >
-                                {yearValue}
+                                Genre
                             </button>
-                        );
-                    })}
-                </div>
-            )}
+                        </h4>
+                        {showGenres && (
+                            <div className={styles.filters}>
+                                {genres.map(genre => (
+                                    <button
+                                        key={genre.id}
+                                        className={`${styles.filterButton} ${selectedGenres.includes(genre.id) ? styles.selected : ''}`}
+                                        onClick={() => handleGenreChange(genre.id)}
+                                    >
+                                        {genre.name}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
 
-            <div className={styles.filterRow}>
-                <h4 className={styles.filterTitle}>
-                    <button
-                        className={`${styles.filterButtonLrg} ${selectedDuration.length ? styles.selected : ''}`}
-                        onClick={() => setShowDurationOptions(prev => !prev)}
-                    >
-                        Duration
-                    </button>
-                </h4>
+                    <div className={styles.filterColumn}>
+                        <h4 className={styles.filterTitle}>
+                            <button
+                                className={`${styles.filterButtonLrg} ${selectedReleaseYear.length ? styles.selectedLrg : ''}`}
+                                onClick={() => setShowYearOptions(prev => !prev)}
+                            >
+                                Release Year
+                            </button>
+                        </h4>
+                        {showYearOptions && (
+                            <div className={styles.filters}>
+                                {[...Array(31).keys()].map(year => {
+                                    const yearValue = new Date().getFullYear() - year;
+                                    return (
+                                        <button
+                                            key={yearValue}
+                                            className={`${styles.filterButton} ${selectedReleaseYear.includes(yearValue) ? styles.selected : ''}`}
+                                            onClick={() => handleYearChange(yearValue)}
+                                        >
+                                            {yearValue}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className={styles.filterColumn}>
+                        <h4 className={styles.filterTitle}>
+                            <button
+                                className={`${styles.filterButtonLrg} ${selectedDuration.length ? styles.selectedLrg : ''}`}
+                                onClick={() => setShowDurationOptions(prev => !prev)}
+                            >
+                                Duration
+                            </button>
+                        </h4>
+                        {showDurationOptions && (
+                            <div className={styles.filters}>
+                                {[30, 60, 90, 120, 150, 180].map(duration => (
+                                    <button
+                                        key={duration}
+                                        className={`${styles.filterButton} ${selectedDuration.includes(duration) ? styles.selected : ''}`}
+                                        onClick={() => handleDurationChange(duration)}
+                                    >
+                                        {duration} mins
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
             </div>
-
-            {showDurationOptions && (
-                <div className={styles.filters}>
-                    {[30, 60, 90, 120, 150, 180].map(duration => (
-                        <button
-                            key={duration}
-                            className={`${styles.filterButton} ${selectedDuration.includes(duration) ? styles.selected : ''}`}
-                            onClick={() => handleDurationChange(duration)}
-                        >
-                            {duration} mins
-                        </button>
-                    ))}
-                </div>
-            )}
-
 
             <div className={styles.resultsContainer}>
                 {searchResults.length === 0 ? (
                     <div>No movies found.</div>
                 ) : (
-                    <SearchResultsGrid movies={searchResults}/>
+                    <SearchResultsGrid movies={searchResults} />
                 )}
             </div>
         </div>
