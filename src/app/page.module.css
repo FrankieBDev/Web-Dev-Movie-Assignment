@@ -2,6 +2,12 @@
   padding: 20px;
 }
 
+.advancedSearchLink {
+  text-align: center;
+  text-decoration: solid;
+  font-size: 1.2rem;
+}
+
 /* Smaller screens */
 @media (max-width: 768px) {
   .title {

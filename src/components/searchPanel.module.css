@@ -1,14 +1,12 @@
 .panelContainer {
     width: 100%;
-    /*background-color: #fff;*/
     padding: 5px;
-    /*margin-top: 20px;*/
 }
 
 .innerPanel {
     background-color: #000;
     color: #fff;
-    padding: 20px;
+    padding: 20px 20px 5px;
     margin: 0 auto;
     width: 100%;
     position: relative;

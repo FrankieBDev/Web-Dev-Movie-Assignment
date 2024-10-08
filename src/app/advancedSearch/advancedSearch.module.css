@@ -1,0 +1,15 @@
+.pageContainer {
+    padding: 20px;
+}
+
+.pageTitle {
+    font-size: 2rem;
+}
+
+.filterContainer {
+    margin-bottom: 20px;
+}
+
+.filterSelect, .searchInput, .searchButton {
+    margin-right: 10px;
+}

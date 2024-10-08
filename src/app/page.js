@@ -5,6 +5,7 @@ import TrendingNowCarousel from '../components/trendingNowCarousel';
 import Watchlist from '../components/watchlistCarousel';
 import {fetchPopularMovies, fetchMoviesByKeyword} from '@/app/services/moviesApi';
 import styles from "./page.module.css";
+import Link from "next/link";
 
 
 const Page = () => {
@@ -33,6 +34,9 @@ const Page = () => {
     return (
         <div>
             <SearchPanel onSearch={handleSearch}/>
+            <p className={styles.advancedSearchLink}>
+                <Link href="advancedSearch" className={styles.advancedSearchLink}><strong> Advanced Search </strong></Link>
+            </p>
             <h1 className={styles.title}>Trending Now</h1>
             <TrendingNowCarousel movies={movies}/>
             <h1 className={styles.title}>Watchlist</h1>

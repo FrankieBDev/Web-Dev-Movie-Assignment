@@ -24,7 +24,8 @@ const SearchResultsCarousel = ({ movies }) => {
     };
 
     if (!movies || movies.length === 0) {
-        return <div className={styles.text}>Enter your search above to view results!</div>;
+        return <div className={styles.text}>Enter your search above to view results <br/> or
+        </div>
     }
 
     return (
@@ -47,18 +48,16 @@ const SearchResultsCarousel = ({ movies }) => {
                                     className={styles.moviePoster}
                                 />
                             </picture>
-                                    <div className={styles.movieOverlay}>
-                                        <h2 className={styles.movieTitle}>{movie.title}</h2>
-                                        <p className={styles.movieDescription}>
-                                            {movie.overview.length > 100 ? `${movie.overview.substring(0, 100)}...` : movie.overview}
-                                            <button
-                                                onClick={() => handleSeeMoreClick(movie.id)}
-                                                className={styles.seeMoreLink}
-                                            >
-                                                See More
-                                            </button>
-                                        </p>
-                                    </div>
+                            <div
+                                className={styles.movieOverlay}
+                                onClick={() => handleSeeMoreClick(movie.id)}
+                            >
+                                <h2 className={styles.movieTitle}>{movie.title}</h2>
+                                <p className={styles.movieDescription}>
+                                    {movie.overview.length > 100 ? `${movie.overview.substring(0, 160)}...` : movie.overview}
+                                </p>
+                                <span className={styles.seeMoreText}>See More</span>
+                            </div>
                         </div>
                     </div>
                 ))}

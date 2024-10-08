@@ -1,0 +1,14 @@
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.movieItem {
+    text-align: center;
+}
+
+.moviePoster {
+    width: 100%;
+    border-radius: 10px;
+}

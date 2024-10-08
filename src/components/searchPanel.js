@@ -1,18 +1,13 @@
 "use client";
 import { useState } from 'react';
 import styles from './searchPanel.module.css';
-import { fetchMoviesByKeyword, fetchMoviesByGenre, fetchMoviesByReleaseDate, fetchMoviesByDuration } from '@/app/services/moviesApi';
+import { fetchMoviesByKeyword } from '@/app/services/moviesApi';
 import SearchResultsCarousel from "@/components/searchResultsCarousel";
-
 
 const SearchPanel = () => {
     const [selectedFilter, setSelectedFilter] = useState('keyword');
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
-
-    const handleFilterClick = (filter) => {
-        setSelectedFilter(filter);
-    };
 
     const handleSearch = async () => {
         if (!searchQuery.trim()) return;
@@ -57,7 +52,7 @@ const SearchPanel = () => {
     return (
         <div id="search-panel" className={styles.panelContainer}>
             <div className={styles.innerPanel}>
-                <h2 className={styles.panelTitle}>Find a Movie</h2>
+                <h2 className={styles.panelTitle}>Quick Search</h2>
                 <input
                     type="text"
                     placeholder={getPlaceholderText()}
@@ -66,42 +61,12 @@ const SearchPanel = () => {
                     className={styles.searchInput}
                 />
                 <button className={styles.searchButton} onClick={handleSearch}>Search</button>
-                <div className={styles.filterContainer}>
-                    <div className={styles.filters}>
-                        <h3 className={styles.panelText}>Filter Results by:</h3>
-                        <button
-                            className={selectedFilter === 'keyword' ? styles.selected : styles.filterButton}
-                            onClick={() => handleFilterClick('keyword')}
-                        >
-                            Keyword
-                        </button>
-                        <button
-                            className={selectedFilter === 'genre' ? styles.selected : styles.filterButton}
-                            onClick={() => handleFilterClick('genre')}
-                        >
-                            Genre
-                        </button>
-                        <button
-                            className={selectedFilter === 'release_date' ? styles.selected : styles.filterButton}
-                            onClick={() => handleFilterClick('release_date')}
-                        >
-                            Release Date
-                        </button>
-                        <button
-                            className={selectedFilter === 'duration' ? styles.selected : styles.filterButton}
-                            onClick={() => handleFilterClick('duration')}
-                        >
-                            Duration
-                        </button>
-                    </div>
-                </div>
                 <div>
-                        <SearchResultsCarousel movies={searchResults} />
+                    <SearchResultsCarousel movies={searchResults} />
                 </div>
             </div>
         </div>
     );
 };
-
 
 export default SearchPanel;
