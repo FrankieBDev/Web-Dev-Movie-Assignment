@@ -1,34 +1,54 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './advancedSearch.module.css';
-import { fetchMoviesByKeyword, fetchMoviesByGenre, fetchMoviesByReleaseDate, fetchMoviesByDuration } from '@/app/services/moviesApi';
+import { fetchMoviesByKeyword, fetchGenres, fetchMoviesByReleaseDate, fetchMoviesByDuration } from '@/app/services/moviesApi';
 import SearchResultsGrid from './searchResultsGrid';
 
 const Page = () => {
-    const [selectedFilter, setSelectedFilter] = useState('keyword');
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [genres, setGenres] = useState([]);
+    const [selectedGenres, setSelectedGenres] = useState([]);
+    const [selectedReleaseYear, setSelectedReleaseYear] = useState(null);
+    const [selectedDuration, setSelectedDuration] = useState(null);
+
+
+
+    useEffect(() => {
+        const loadGenres = async () => {
+            const genreList = await fetchGenres();
+            setGenres(genreList);
+        };
+
+        loadGenres();
+    }, []);
+
 
     const handleSearch = async () => {
-        if (!searchQuery.trim()) return;
         let results = [];
+
         try {
-            switch (selectedFilter) {
-                case 'keyword':
-                    results = await fetchMoviesByKeyword(searchQuery);
-                    break;
-                case 'genre':
-                    results = await fetchMoviesByGenre(searchQuery);
-                    break;
-                case 'release_date':
-                    results = await fetchMoviesByReleaseDate(searchQuery);
-                    break;
-                case 'duration':
-                    results = await fetchMoviesByDuration(searchQuery);
-                    break;
-                default:
-                    break;
+            if (searchQuery.trim()) {
+                results = await fetchMoviesByKeyword(searchQuery);
+            } else if (selectedDuration) {
+                results = await fetchMoviesByDuration(selectedDuration);
+            } else {
+                return;
             }
+
+            if (selectedGenres.length) {
+                results = results.filter(movie =>
+                    movie.genre_ids.some(genreId => selectedGenres.includes(genreId))
+                );
+            }
+
+            if (selectedReleaseYear) {
+                const yearResults = await fetchMoviesByReleaseDate(selectedReleaseYear);
+                results = results.filter(movie =>
+                    yearResults.some(yearMovie => yearMovie.id === movie.id)
+                );
+            }
+
             setSearchResults(results);
             setSearchQuery('');
         } catch (error) {
@@ -36,21 +56,19 @@ const Page = () => {
         }
     };
 
+    const handleGenreChange = (genreId) => {
+        setSelectedGenres(prev =>
+            prev.includes(genreId) ? prev.filter(id => id !== genreId) : [...prev, genreId]
+        );
+    };
+
     return (
         <div className={styles.pageContainer}>
             <h2 className={styles.pageTitle}>Advanced Search</h2>
             <div className={styles.filterContainer}>
-                <h3>Filter Results by:</h3>
-                <select value={selectedFilter} onChange={(e) => setSelectedFilter(e.target.value)}
-                        className={styles.filterSelect}>
-                    <option value="keyword">Keyword</option>
-                    <option value="genre">Genre</option>
-                    <option value="release_date">Release Date</option>
-                    <option value="duration">Duration</option>
-                </select>
                 <input
                     type="text"
-                    placeholder={`Search for a ${selectedFilter}...`}
+                    placeholder="Search for a movie..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className={styles.searchInput}
@@ -58,40 +76,51 @@ const Page = () => {
                 <button className={styles.searchButton} onClick={handleSearch}>Search</button>
             </div>
 
-            {/*<div className={styles.filterContainer}>*/}
-            {/*    <div className={styles.filters}>*/}
-            {/*        <h3 className={styles.panelText}>Filter Results by:</h3>*/}
-            {/*        <button*/}
-            {/*            className={selectedFilter === 'keyword' ? styles.selected : styles.filterButton}*/}
-            {/*            onClick={() => handleFilterClick('keyword')}*/}
-            {/*        >*/}
-            {/*            Keyword*/}
-            {/*        </button>*/}
-            {/*        <button*/}
-            {/*            className={selectedFilter === 'genre' ? styles.selected : styles.filterButton}*/}
-            {/*            onClick={() => handleFilterClick('genre')}*/}
-            {/*        >*/}
-            {/*            Genre*/}
-            {/*        </button>*/}
-            {/*        <button*/}
-            {/*            className={selectedFilter === 'release_date' ? styles.selected : styles.filterButton}*/}
-            {/*            onClick={() => handleFilterClick('release_date')}*/}
-            {/*        >*/}
-            {/*            Release Date*/}
-            {/*        </button>*/}
-            {/*        <button*/}
-            {/*            className={selectedFilter === 'duration' ? styles.selected : styles.filterButton}*/}
-            {/*            onClick={() => handleFilterClick('duration')}*/}
-            {/*        >*/}
-            {/*            Duration*/}
-            {/*        </button>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <h3>Filter Results By:</h3>
+
+            <h4>Select Genres:</h4>
+            <div className={styles.genreCheckboxes}>
+                {genres.map(genre => (
+                    <label key={genre.id}>
+                        <input
+                            type="checkbox"
+                            checked={selectedGenres.includes(genre.id)}
+                            onChange={() => handleGenreChange(genre.id)}
+                        />
+                        {genre.name}
+                    </label>
+                ))}
+            </div>
+
+            <h3>Select Release Year:</h3>
+            <select value={selectedReleaseYear} onChange={(e) => setSelectedReleaseYear(Number(e.target.value))}>
+                <option value="">Any Year</option>
+                {[...Array(31).keys()].map(year => {
+                    const yearValue = new Date().getFullYear() - year;
+                    return (
+                        <option key={yearValue} value={yearValue}>{yearValue}</option>
+                    );
+                })}
+            </select>
+
+            <h3>Select Duration:</h3>
+            <select value={selectedDuration} onChange={(e) => setSelectedDuration(Number(e.target.value))}>
+                <option value="">Any Duration</option>
+                <option value="30">30 mins</option>
+                <option value="60">60 mins</option>
+                <option value="90">90 mins</option>
+                <option value="120">120 mins</option>
+                <option value="150">150 mins</option>
+                <option value="180">180 mins</option>
+            </select>
+
+
             <div className={styles.resultsContainer}>
                 <SearchResultsGrid movies={searchResults}/>
             </div>
         </div>
     );
 };
+
 
 export default Page;
