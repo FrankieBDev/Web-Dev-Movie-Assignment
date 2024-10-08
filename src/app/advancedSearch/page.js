@@ -59,15 +59,19 @@ const Page = () => {
             }
 
             if (selectedReleaseYear.length) {
-                const yearResults = await Promise.all(selectedReleaseYear.map(year => fetchMoviesByReleaseDate(year)));
-                const flatYearResults = yearResults.flat();
                 results = results.filter(movie =>
-                    flatYearResults.some(yearMovie => yearMovie.id === movie.id)
+                    selectedReleaseYear.some(({ start, end }) =>
+                        movie.release_date >= `${start}-01-01` && movie.release_date <= `${end}-12-31`
+                    )
                 );
             }
 
             setSearchResults(results);
             setSearchQuery('');
+
+            setShowGenres(false);
+            setShowYearOptions(false);
+            setShowDurationOptions(false);
         } catch (error) {
             console.error('Error performing search:', error);
         }
@@ -86,16 +90,35 @@ const Page = () => {
     };
 
     const handleYearChange = (year) => {
-        setSelectedReleaseYear(prev => {
-            return prev.includes(year) ? prev.filter(y => y !== year) : [...prev, year];
-        });
+        const decadeStart = Math.floor(year / 10) * 10;
+        const decadeEnd = decadeStart + 9;
+        const isSelected = selectedReleaseYear.some(y => y.start === decadeStart && y.end === decadeEnd);
+        if (isSelected) {
+            setSelectedReleaseYear(prev => prev.filter(y => !(y.start === decadeStart && y.end === decadeEnd)));
+        } else {
+            setSelectedReleaseYear(prev => [...prev, { start: decadeStart, end: decadeEnd }]);
+        }
     };
+
 
     const handleDurationChange = (duration) => {
         setSelectedDuration(prev => {
             return prev.includes(duration) ? prev.filter(d => d !== duration) : [...prev, duration];
         });
     };
+
+    const decades = [
+        { label: '2020s', start: 2020, end: 2029 },
+        { label: '2010s', start: 2010, end: 2019 },
+        { label: '2000s', start: 2000, end: 2009 },
+        { label: '1990s', start: 1990, end: 1999 },
+        { label: '1980s', start: 1980, end: 1989 },
+        { label: '1970s', start: 1970, end: 1979 },
+        { label: '1960s', start: 1960, end: 1969 },
+        { label: '1950s', start: 1950, end: 1959 },
+        { label: '1940s', start: 1940, end: 1949 },
+        { label: '1930s', start: 1930, end: 1939 },
+    ];
 
     return (
         <div className={styles.panelContainer}>
@@ -152,18 +175,15 @@ const Page = () => {
                         </h4>
                         {showYearOptions && (
                             <div className={styles.filters}>
-                                {[...Array(31).keys()].map(year => {
-                                    const yearValue = new Date().getFullYear() - year;
-                                    return (
-                                        <button
-                                            key={yearValue}
-                                            className={`${styles.filterButton} ${selectedReleaseYear.includes(yearValue) ? styles.selected : ''}`}
-                                            onClick={() => handleYearChange(yearValue)}
-                                        >
-                                            {yearValue}
-                                        </button>
-                                    );
-                                })}
+                                {decades.map(decade => (
+                                    <button
+                                        key={decade.label}
+                                        className={`${styles.filterButton} ${selectedReleaseYear.some(y => y.start === decade.start && y.end === decade.end) ? styles.selected : ''}`}
+                                        onClick={() => handleYearChange(decade.start)} // Pass start year for handling
+                                    >
+                                        {decade.label}
+                                    </button>
+                                ))}
                             </div>
                         )}
                     </div>
@@ -198,7 +218,7 @@ const Page = () => {
                 {searchResults.length === 0 ? (
                     <div>No movies found.</div>
                 ) : (
-                    <SearchResultsGrid movies={searchResults} />
+                    <SearchResultsGrid movies={searchResults}/>
                 )}
             </div>
         </div>
