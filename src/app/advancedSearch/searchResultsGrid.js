@@ -33,7 +33,7 @@ const SearchResultsGrid = ({ movies }) => {
                         >
                             <h3 className={styles.movieTitle}>{movie.title}</h3>
                             <p className={styles.movieDescription}>
-                                {movie.overview.length > 100 ? `${movie.overview.substring(0, 100)}...` : movie.overview}
+                                {movie.overview.length > 250 ? `${movie.overview.substring(0, 100)}...` : movie.overview}
                             </p>
                             <span className={styles.seeMoreText}>See More</span>
                         </div>

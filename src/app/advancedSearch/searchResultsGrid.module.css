@@ -43,7 +43,7 @@
     transition: opacity 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     box-sizing: border-box;
 }

@@ -1,17 +1,22 @@
 .header {
     background-color: black;
-    padding: 20px 60px;
+    padding: 60px 60px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
     position: relative;
 }
 
 .headerContent {
     display: flex;
+    flex-direction: column;
     align-items: center;
     width: 100%;
+}
+
+.logoContainer {
+    margin-bottom: 20px;
 }
 
 .navContainer {
@@ -19,14 +24,8 @@
     align-items: center;
 }
 
-.logoContainer {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
 .navItem {
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
 .navItem a {
@@ -42,20 +41,24 @@
     text-shadow: 0 0 10px white;
 }
 
-
 .logo {
     max-height: 200px;
     max-width: 100%;
 }
 
+.menuToggle {
+    position: absolute;
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
 
 @media (max-width: 768px) {
     .header {
         padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: black;
         box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
 
@@ -66,17 +69,38 @@
     }
 
     .navContainer {
+        display: none;
         flex-direction: column;
-        margin: 10px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 10;
+        padding: 50px 0;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .navContainer.open {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
     }
 
     .navItem {
-        margin: 5px 0;
+        margin: 20px 0;
+        text-align: center;
+        font-size: 2rem;
     }
 
-    .navItem a {
-        font-size: 1.5rem;
-        padding: 0.5rem;
+    .menuToggle {
+        display: block;
+        margin: 10px 0;
     }
 
     .logo {
@@ -86,8 +110,8 @@
 
 @media (max-width: 480px) {
     .navItem a {
-        font-size: 1.2rem;
-        padding: 0.3rem;
+        font-size: 1.5rem;
+        padding: 0.5rem;
     }
 
     .logo {
