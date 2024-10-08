@@ -112,3 +112,7 @@
 .removeButton:hover {
     background-color: darkred;
 }
+
+.textWatchlist {
+    text-align: center;
+}

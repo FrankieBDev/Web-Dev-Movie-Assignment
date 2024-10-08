@@ -77,7 +77,7 @@ export default function Watchlist() {
                     </button>
                 </div>
             ) : (
-                <p className={styles.textW}>No movies in your watchlist.</p>
+                <p className={styles.textWatchlist}>No movies in your watchlist.</p>
             )}
         </div>
     );

@@ -95,7 +95,7 @@
 
 .subtitle {
     display: flex;
-    align-items: start;
+    align-items: center;
     padding-bottom: 10px;
 }
 
@@ -177,12 +177,26 @@
     }
 
     .infoContainer {
+        margin-bottom: 24px;
+        padding-bottom: 5px;
+        font-size: 1rem;
         text-align: center;
+        max-width: 100%;
     }
-    .subtitle{
-        text-align: center;
 
+    .subtitle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 10px;
+        text-align: center;
     }
+
+    .infoText {
+        font-size: 1rem;
+        text-align: center;
+    }
+
 }
 
 
