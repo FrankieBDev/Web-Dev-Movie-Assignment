@@ -18,6 +18,7 @@ const SearchResultsGrid = ({ movies }) => {
             {movies.map(movie => (
                 <div key={movie.id} className={styles.movieItem}>
                     <div className={styles.moviePosterContainer}>
+                        <picture>
                         <img
                             src={movie.poster_path
                                 ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
@@ -25,6 +26,7 @@ const SearchResultsGrid = ({ movies }) => {
                             alt={movie.title}
                             className={styles.moviePoster}
                         />
+                        </picture>
                         <div
                             className={styles.movieOverlay}
                             onClick={() => handleSeeMoreClick(movie.id)}

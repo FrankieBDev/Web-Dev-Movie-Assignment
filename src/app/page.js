@@ -39,7 +39,7 @@ const Page = () => {
             </p>
             <h1 className={styles.title}>Trending Now</h1>
             <TrendingNowCarousel movies={movies}/>
-            <h1 className={styles.title}>Watchlist</h1>
+            <h1 id="watchlistSection" className={styles.title}>Watchlist</h1>
             <Watchlist movies={movies}/>
         </div>
     );

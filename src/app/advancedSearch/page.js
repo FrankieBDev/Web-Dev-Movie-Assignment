@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './advancedSearch.module.css';
 import { fetchMoviesByKeyword, fetchGenres, fetchMoviesByReleaseDate, fetchMoviesByDuration } from '@/app/services/moviesApi';
 import SearchResultsGrid from './searchResultsGrid';
@@ -11,8 +12,7 @@ const Page = () => {
     const [selectedGenres, setSelectedGenres] = useState([]);
     const [selectedReleaseYear, setSelectedReleaseYear] = useState(null);
     const [selectedDuration, setSelectedDuration] = useState(null);
-
-
+    const router = useRouter();
 
     useEffect(() => {
         const loadGenres = async () => {
@@ -23,6 +23,13 @@ const Page = () => {
         loadGenres();
     }, []);
 
+    useEffect(() => {
+        setSearchResults([]);
+        setSearchQuery('');
+        setSelectedGenres([]);
+        setSelectedReleaseYear(null);
+        setSelectedDuration(null);
+    }, []);
 
     const handleSearch = async () => {
         let results = [];
@@ -114,13 +121,15 @@ const Page = () => {
                 <option value="180">180 mins</option>
             </select>
 
-
             <div className={styles.resultsContainer}>
-                <SearchResultsGrid movies={searchResults}/>
+                {searchResults.length === 0 ? (
+                    <div>No movies found.</div>
+                ) : (
+                    <SearchResultsGrid movies={searchResults} />
+                )}
             </div>
         </div>
     );
 };
-
 
 export default Page;

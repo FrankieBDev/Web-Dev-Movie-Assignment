@@ -33,10 +33,14 @@ export default function useWatchlist() {
         setWatchList((oldWatchlist) => oldWatchlist.filter(item => item.id !== movieId));
     };
 
+    const isMovieInWatchlist = (movieId) => {
+        return watchList.some((item) => item.id === movieId);
+    };
+
     return {
         watchList,
         saveToWatchList,
         removeFromWatchList,
-
+        isMovieInWatchlist,
     };
 }
