@@ -193,11 +193,51 @@
         align-items: center;
     }
 
+    .filterButtonLrg {
+        padding: 12px;
+        font-size: 1rem;
+        max-width: 150px;
+    }
+
     .filterButton {
-        max-width: 100%;
+        padding: 8px;
+        font-size: 0.8rem;
+        max-width: 120px;
     }
 
     .selected {
-        max-width: 100%;
+        max-width: 120px;
+    }
+
+    .panelTitle {
+        font-size: 1.5rem;
+    }
+
+    .panelSubtitle {
+        font-size: 1.1rem;
+    }
+
+    .searchButton {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.2rem;
+    }
+
+    .filterButtonLrg {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .filterButton {
+        padding: 6px;
+        font-size: 0.7rem;
+    }
+
+    .panelText {
+        font-size: 1rem;
     }
 }

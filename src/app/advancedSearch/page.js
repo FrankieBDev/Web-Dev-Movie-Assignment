@@ -6,7 +6,6 @@ import {
     fetchGenres,
     fetchMoviesByDuration,
     fetchMoviesByKeyword,
-    fetchMoviesByReleaseDate
 } from '@/app/services/moviesApi';
 import SearchResultsGrid from './searchResultsGrid';
 
@@ -179,7 +178,7 @@ const Page = () => {
                                     <button
                                         key={decade.label}
                                         className={`${styles.filterButton} ${selectedReleaseYear.some(y => y.start === decade.start && y.end === decade.end) ? styles.selected : ''}`}
-                                        onClick={() => handleYearChange(decade.start)} // Pass start year for handling
+                                        onClick={() => handleYearChange(decade.start)}
                                     >
                                         {decade.label}
                                     </button>
@@ -216,7 +215,12 @@ const Page = () => {
 
             <div className={styles.resultsContainer}>
                 {searchResults.length === 0 ? (
-                    <div>No movies found.</div>
+                    <div>
+                        <p>Keyword must be entered to perform search.</p>
+                        <br/>
+                        <p>No movies found.</p>
+                    </div>
+
                 ) : (
                     <SearchResultsGrid movies={searchResults}/>
                 )}

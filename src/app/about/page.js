@@ -12,7 +12,8 @@ export default function About() {
                     </picture>
             </div>
             <p className={styles.textA}>
-                Welcome to Frankie&#39;s Movies! <br/> <br/>
+                <h2> Welcome to Frankie&#39;s Movies! </h2>
+                <br/> <br/>
                 This project was developed by Frankie Beckingham as part of the Web Design & Authoring module while
                 studying Software Development at Ada College.
             </p>
