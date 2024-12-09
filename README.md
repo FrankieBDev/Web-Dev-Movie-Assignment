@@ -4,6 +4,15 @@
 ### October 2024.
 
 ---
+**TL;DR**
+- An Web App which allows users to search and browse movies.
+
+- Tech Stack:
+  - React.js
+  - Next.js
+  - CSS
+  - Uses the [TMDB API](https://www.themoviedb.org/?language=en-GB). 
+---
 
 The assignment criteria was as follows:
 
@@ -35,40 +44,23 @@ Users of the web app should at minimum be able to:
   - Manage watchlist
 
 ---
+## Screenshots
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#### Desktop View
 
-## Getting Started
+![image](https://github.com/user-attachments/assets/93003c52-74d9-4684-8b4c-829e59bb9d92)
 
-First, run the development server:
+![image](https://github.com/user-attachments/assets/8cd681d7-55a5-46da-9afb-0c2eb3d0586e)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![image](https://github.com/user-attachments/assets/ebd1de45-9022-465c-8ff0-73de20840104)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+#### Mobile View
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+![image](https://github.com/user-attachments/assets/c7926473-d20b-4e90-89f1-524a51434d51)
 
-## Learn More
+![image](https://github.com/user-attachments/assets/1212b48a-9ec3-4029-963d-12f7d59e6179)
 
-To learn more about Next.js, take a look at the following resources:
+![image](https://github.com/user-attachments/assets/ccce964a-74dd-42e2-86d4-0683de61a61d)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![image](https://github.com/user-attachments/assets/8b6907e4-02ac-4cb4-b1b8-98cf784a9f4a)
