@@ -1,3 +1,44 @@
+### A college assignment
+### Submitted as part of my L4 Software Development Apprenticeship 
+### Module Name: Web Design & Authoring
+### October 2024.
+
+The assignment criteria was as follows:
+
+- Create a web app that allows users to browse information about movies.
+- The web app will be coded using a Javascript framework, HTML and CSS.
+- It won’t have a backend server component, but will retrieve data from one or more APIs.
+- State will be preserved by storing data in the user’s browser.
+
+
+### Core functional requirements
+Users of the web app should at minimum be able to:
+- See a list or grid of movies with titles and optionally posters
+- Search movies by keyword
+- Filter results using the following attributes
+  - Runtime / duration
+  - Genre
+  - Release year
+- View movie information including:
+  - Title
+  - Overview
+  - Release year
+  - Genre
+  - Duration
+  - Cast list
+- Allow the user to manage a watchlist, including adding and deleting movies
+- Navigate the following screens:
+  - Homepage
+  - View movie details
+  - Manage watchlist
+
+
+
+
+
+
+___
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
