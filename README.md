@@ -1,7 +1,9 @@
-### A college assignment
+### A College Assignment
 ### Submitted as part of my L4 Software Development Apprenticeship 
 ### Module Name: Web Design & Authoring
 ### October 2024.
+
+---
 
 The assignment criteria was as follows:
 
@@ -32,12 +34,7 @@ Users of the web app should at minimum be able to:
   - View movie details
   - Manage watchlist
 
-
-
-
-
-
-___
+---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
