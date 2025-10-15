@@ -5,7 +5,7 @@
 
 ---
 **TL;DR**
-- An Web App which allows users to search and browse movies.
+- A Web App which allows users to search and browse movies.
 
 - Tech Stack:
   - React.js
